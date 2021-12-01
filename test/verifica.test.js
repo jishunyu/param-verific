@@ -5,7 +5,8 @@ const user = {
     age: 21,
     phone: '17743256788',
     gender: 0,
-    regular: 123
+    regular: 123,
+    arr: [1]
 }
 const verif = {
     name: {
@@ -31,10 +32,15 @@ const verif = {
     regular: {
         verify: /^123/,
         required: true
+    },
+    arr: {
+        verify: 'array',
+        required: true,
+        isEmpty: false
     }
 }
 
-test('not error data', () => {
+test('params verific', () => {
     const v = new verifica(verif)
     v.verification(user, ({ success, error }) => {
         expect(error).toHaveLength(0)

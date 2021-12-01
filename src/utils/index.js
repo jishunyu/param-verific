@@ -16,3 +16,6 @@ exports.isBoolean = function isBoolean(boolean) {
 exports.isEmpty = function isEmpty(val) {
     return val === null || val === undefined
 }
+exports.isArray = function isNumber(array) {
+    return Object.prototype.toString.call(array) === '[object Array]'
+}
