@@ -34,4 +34,7 @@ module.exports = {
         }
         return utils.isArray(value)
     },
+    'object': (value, rule) => {
+        return utils.isObject(value)
+    },
 }

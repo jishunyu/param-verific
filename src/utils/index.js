@@ -19,3 +19,6 @@ exports.isEmpty = function isEmpty(val) {
 exports.isArray = function isNumber(array) {
     return Object.prototype.toString.call(array) === '[object Array]'
 }
+exports.isObject = function isObject(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+}
