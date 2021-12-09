@@ -6,7 +6,8 @@ const user = {
     phone: '17743256788',
     gender: 0,
     regular: 123,
-    arr: [1]
+    arr: [1],
+    obj: {}
 }
 const verif = {
     name: {
@@ -37,6 +38,10 @@ const verif = {
         verify: 'array',
         required: true,
         isEmpty: false
+    },
+    obj: {
+        verify: 'object',
+        required: true
     }
 }
 

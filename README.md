@@ -14,11 +14,14 @@ You could use like this:
 		name: '哈哈',
 		age: 21,
 		phone: '17743256788',
+		gender: 0,
+		regular: 123,
+		arr: [1],
+		obj: {}
 	}
 	const verif = {
 		name: {
 			verify: 'string',
-			maxLength: 10,
 			minLength: 2
 		},
 		age: {
@@ -31,16 +34,6 @@ You could use like this:
 			verify: 'phone',
 			required: true
 		},
-		
-	}
-	const v = new verifica(verif)
-    v.verification(user, ({ success, error }) => {
-        expect(error).toHaveLength(0)
-    })
-```
-If you want to customize the rules:
-```JavaScript
-	const verif = {
 		gender: {
 			verify: function(value, rule){
 				return value == 0 //true or false
@@ -50,11 +43,16 @@ If you want to customize the rules:
 		regular: {
 			verify: /^123/,
 			required: true
+		},
+		arr: {
+			verify: 'array',
+			required: true,
+			isEmpty: false
+		},
+		obj: {
+			verify: 'object',
+			required: true
 		}
-	}
-	const user = {
-		gender: 0,
-		regular: 123
 	}
 	const v = new verifica(verif)
     v.verification(user, ({ success, error }) => {

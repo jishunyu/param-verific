@@ -1,22 +1,25 @@
 const builtRule = require('./builtIn')
 const utils = require('./utils/index')
-class verifica {
+const { prefix } = require('./config')
+class Verifica {
     constructor(rule) {
+        if(!utils.isObject(rule)){
+            throw('参数错误：rule Must be an object')
+        }
         this.rule = rule;
     }
     verification(verificaObject, callback) {
-        const keys = Object.keys(verificaObject)
+        const keys = Object.keys(this.rule)
         const success = [];
         const error = [];
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i]
             const rule = this.rule[key]
-            if (!rule) continue;
             const value = verificaObject[key]
             const result = this._verifica(rule, value)
             result ? success.push({ key, ...rule }) : error.push({ key, ...rule })
         }
-        callback({ success, error })
+        callback && callback({ success, error })
     }
     _verifica(rule, value) {
         const verify = rule.verify
@@ -24,8 +27,8 @@ class verifica {
             return false
         }
         if (utils.isString(verify)) {
-            if (builtRule[verify]) {
-                return this._verifica(Object.assign({}, rule, { verify: builtRule[verify] }), value)
+            if (builtRule[prefix + verify]) {
+                return this._verifica(Object.assign({}, rule, { verify: builtRule[prefix + verify] }), value)
             }
             return false
         }
@@ -50,5 +53,5 @@ class verifica {
     }
 }
 
-module.exports = verifica;
+module.exports = Verifica;
 
