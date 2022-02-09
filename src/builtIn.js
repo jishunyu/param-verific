@@ -15,6 +15,9 @@ module.exports = {
             if(rule.isTrim){
                 value = value.trim()
             }
+            if(rule.isEmpty && (value === '')){
+                return false
+            }
             const maxLength = rule.maxLength ?? Infinity
             const minLength = rule.minLength ?? 0
             return (value.length <= maxLength ) && (value.length >= minLength)

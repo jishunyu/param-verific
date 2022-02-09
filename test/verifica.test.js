@@ -7,7 +7,7 @@ const user = {
     gender: 0,
     regular: 123,
     arr: [1],
-    obj: {}
+    obj: null
 }
 const verif = {
     name: {
