@@ -53,5 +53,5 @@ class Verifica {
     }
 }
 
+Verifica.builtRule = builtRule;
 module.exports = Verifica;
-

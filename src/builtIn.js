@@ -1,22 +1,20 @@
 const utils = require('./utils/index')
 const { prefix } = require('./config')
 module.exports = {
-    [`${prefix}number`]: (value, rule) => {
-        if(utils.isNumber(value)){
+    [`${prefix}number`]: (v, rule) => {
+        if(utils.isNumber(v)){
             const maxLength = rule.maxLength ?? Infinity
             const minLength = rule.minLength ?? 0
-            const v = `${value}`
-            return (v.length <= maxLength ) && (v.length >= minLength)
+            const max = rule.max ?? Infinity
+            const min = rule.min ?? -Infinity
+            return (v <= max ) && (v >= min) && (`${v}`.length <= maxLength ) && (`${v}`.length >= minLength)
         }
-        return utils.isNumber(value)
+        return utils.isNumber(v)
     },
     [`${prefix}string`]: (value, rule) => {
         if (utils.isString(value)) {
             if(rule.isTrim){
                 value = value.trim()
-            }
-            if(rule.isEmpty && (value === '')){
-                return false
             }
             const maxLength = rule.maxLength ?? Infinity
             const minLength = rule.minLength ?? 0
@@ -31,12 +29,9 @@ module.exports = {
     [`${prefix}array`]: (value, rule) => {
         if(utils.isArray(value)){
             const length = value.length
-            if(!rule.isEmpty && length <= 0){
-                return false
-            }
             const maxLength = rule.maxLength ?? Infinity
             const minLength = rule.minLength ?? 0
-            return (value.length <= maxLength ) && (value.length >= minLength)
+            return (length <= maxLength ) && (length >= minLength)
         }
         return utils.isArray(value)
     },

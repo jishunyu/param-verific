@@ -1,5 +1,4 @@
 const verifica = require('../src/index');
-
 const user = {
     name: '哈哈',
     age: 21,
