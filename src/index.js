@@ -9,17 +9,23 @@ class Verifica {
         this.rule = rule;
     }
     verification(verificaObject, callback) {
-        const keys = Object.keys(this.rule)
-        const success = [];
-        const error = [];
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i]
-            const rule = this.rule[key]
-            const value = verificaObject[key]
-            const result = this._verifica(rule, value)
-            result ? success.push({ key, ...rule }) : error.push({ key, ...rule })
-        }
-        callback && callback({ success, error })
+        return new Promise((resolve,reject) => {
+            const keys = Object.keys(this.rule)
+            const success = [];
+            const error = [];
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i]
+                const rule = this.rule[key]
+                const value = verificaObject[key]
+                const result = this._verifica(rule, value)
+                result ? success.push({ key, ...rule }) : error.push({ key, ...rule })
+            }
+            const result = { success, error }
+            
+            callback && callback(result);
+
+            error.length > 0 ? reject(result) : resolve(result)
+        })
     }
     _verifica(rule, value) {
         const verify = rule.verify
