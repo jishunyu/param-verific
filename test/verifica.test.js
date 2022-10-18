@@ -5,8 +5,8 @@ const user = {
     phone: '17743256788',
     gender: 0,
     regular: 123,
-    arr: [1],
-    obj: null
+    arr: [],
+    obj: {}
 }
 const verif = {
     name: {
@@ -26,8 +26,7 @@ const verif = {
     gender: {
         verify: function(value, rule){
             return value == 0 //true or false
-        },
-        required: true
+        }
     },
     regular: {
         verify: /^123/,

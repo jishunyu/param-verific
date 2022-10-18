@@ -22,11 +22,12 @@ You could use like this:
 	const verif = {
 		name: {
 			verify: 'string',
-			minLength: 2
+			minLength: 2,
+			tips: '昵称不能为空！'
 		},
 		age: {
 			verify: 'number',
-			required: true,
+			required: true, //不能为null 或 undefined 默认true 注意：1.07版本前required默认为false 即默认属性值可以为null 或 undefined
 			maxLength: 10,
 			minLength: 2
 		},
@@ -47,7 +48,6 @@ You could use like this:
 		arr: {
 			verify: 'array',
 			required: true,
-			isEmpty: false
 		},
 		obj: {
 			verify: 'object',
@@ -57,7 +57,11 @@ You could use like this:
 	const v = new verifica(verif)
     v.verification(user, ({ success, error }) => {
         expect(error).toHaveLength(0)
-    })
+    }).then(res => {
+
+	}).catch(err => {
+		expect(err).toHaveLength(0)
+	})
 
 ```
 
