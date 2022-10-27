@@ -1,12 +1,12 @@
 {
   "name": "param-verific",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "参数验证",
   "main": "./lib/index.js",
   "scripts": {
     "test": "jest",
     "compile:babel": "npx babel src -d lib",
-    "compile:webpack": "npx webpack"
+    "build": "npx webpack"
   },
   "author": "",
   "license": "ISC",
